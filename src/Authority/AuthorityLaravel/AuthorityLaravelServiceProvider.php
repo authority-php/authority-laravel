@@ -1,24 +1,24 @@
 <?php
-namespace Authority\AuthorityL4;
+namespace Authority\AuthorityLaravel;
 
 use Authority\Authority;
 use Illuminate\Support\ServiceProvider;
 
-class AuthorityL4ServiceProvider extends ServiceProvider
+class AuthorityLaravelServiceProvider extends ServiceProvider
 {
-    
+
     /**
      * Register the service provider.
      *
      * @return void
      */
     public function register(){
-        $this->package('machuga/authority-l4');
+        $this->package('authority-php/authority-laravel');
 
         $this->app['authority'] = $this->app->share(function($app){
             $user = $app['auth']->user();
             $authority = new Authority($user);
-            $fn = $app['config']->get('authority-l4::initialize', null);
+            $fn = $app['config']->get('authority-laravel::initialize', null);
 
             if($fn) {
                 $fn($authority);
@@ -26,7 +26,7 @@ class AuthorityL4ServiceProvider extends ServiceProvider
 
             return $authority;
         });
-        
+
         $this->app->alias('authority', 'Authority\Authority');
     }
 

@@ -1,12 +1,12 @@
-# Authority-L4
+# Authority-Laravel
 ## A simple and flexible authorization system for Laravel 4
 
 ### Installation via Composer
 Add Authority to your composer.json file to require Authority
 
-	require : {
-		"laravel/framework": "4.0.*",
-        "machuga/authority-l4" : "dev-master"
+	  require : {
+      "laravel/framework": "~4.0",
+      "authority-php/authority-laravel" : "2.3.x-dev"
     }
 
 Now update Composer
@@ -15,20 +15,20 @@ Now update Composer
 
 The last **required** step is to add the service provider to `app/config/app.php`
 
-```php	
-    'Authority\AuthorityL4\AuthorityL4ServiceProvider',
+```php
+    'Authority\AuthorityLaravel\AuthorityLaravelServiceProvider',
 ```
 
 Congratulations, you have successfully installed Authority.  However, we have also included some other configuration options for your convenience.
 
-
+For [**Laravel 5.0**](http://laravel.com/docs/5.0) supports, see [Authority-Laravel master branch](https://github.com/authority-php/authority-laravel/tree/master)
 
 ### Additional (optional) Configuration Options
 
 ##### Add the alias (facade) to your Laravel app config file.
 
 ```php
-    'Authority' => 'Authority\AuthorityL4\Facades\Authority',
+    'Authority' => 'Authority\AuthorityLaravel\Facades\Authority',
 ```
 
 This will allow you to access the Authority class through the static interface you are used to with Laravel components.
@@ -40,13 +40,13 @@ This will allow you to access the Authority class through the static interface y
 ##### Publish the Authority default configuration file
 
 ```php
-	php artisan config:publish machuga/authority-l4
+	php artisan config:publish authority-php/authority-laravel
 ```
 
-This will place a copy of the configuration file at `app/config/packages/machuga/authority-l4`.  The config file includes an 'initialize' function, which is a great place to setup your rules and aliases.
+This will place a copy of the configuration file at `app/config/packages/authority-php/authority-laravel`. The config file includes an 'initialize' function, which is a great place to setup your rules and aliases.
 
 ```php
-	//app/config/packages/machuga/authority-l4
+	//app/config/packages/authority-php/authority-laravel
 
 	return array(
 
@@ -73,7 +73,7 @@ We have provided a basic table structure to get you started in creating your rol
 Run the Authority migrations
 
 ```php
-	php artisan migrate --package="machuga/authority-l4"
+	php artisan migrate --package="authority-php/authority-laravel"
 ```
 
 This will create the following tables
@@ -116,7 +116,7 @@ Lastly, in your Authority config file which you copied over in the previous conf
 
 ```php
 	<?php
-	//app/config/packages/machuga/authority-l4
+	//app/config/packages/authority-php/authority-laravel
 
 	return array(
 
@@ -153,7 +153,7 @@ Lastly, in your Authority config file which you copied over in the previous conf
 	if( Authority::can('create', 'User') ) {
 		User::create(array(
 			'username' => 'someuser@test.com'
-		));	
+		));
 	}
 
 	//If you just chose to use the service provider, you can use the IoC container to resolve your instance
@@ -179,7 +179,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
 	```
 
 - **deny**: *create* a rule that will *deny* access a resource
-	
+
 	example 1:
 	```php
 	    Authority::deny('create', 'User');
@@ -193,7 +193,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
     ```
 
 - **can**: check if a user *can* access a resource
-	
+
 	example:
 	```php
 	    Authority::can('read', 'User', $user);
@@ -207,7 +207,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
 	```
 
 - **addAlias**: alias together a group of actions
-	
+
 	this example aliases together the CRUD methods under a name of `manage`
 	```php
 	    Authority::alias('manage', array('create', 'read', 'update', 'delete'));

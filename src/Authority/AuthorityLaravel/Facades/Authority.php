@@ -1,5 +1,5 @@
 <?php
-namespace Authority\AuthorityL4\Facades;
+namespace Authority\AuthorityLaravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

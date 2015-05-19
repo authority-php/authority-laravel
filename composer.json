@@ -1,9 +1,10 @@
 {
-    "name": "machuga/authority-l4",
+    "name": "authority-php/authority-laravel",
     "type": "library",
     "description": "A simple and flexible authorization system for PHP",
     "keywords": ["laravel", "laravel 4", "authentication", "authorization"],
-    "homepage": "https://github.com/machuga/authority-l4",
+    "homepage": "https://github.com/authority-php/authority-laravel",
+    "license": "MIT",
     "authors": [
         {
             "name": "Matthew Machuga",
@@ -25,7 +26,7 @@
     "require": {
         "php": ">=5.3.0",
         "illuminate/support": "~4",
-        "authority-php/authority" : "~2.1.2"
+        "authority-php/authority" : "~2.1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
@@ -36,7 +37,7 @@
             "src/migrations"
         ],
         "psr-0": {
-            "Authority\\AuthorityL4": "src/"
+            "Authority\\AuthorityLaravel": "src/"
         }
     },
     "minimum-stability": "stable"
